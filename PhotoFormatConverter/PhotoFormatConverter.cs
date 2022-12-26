@@ -9,7 +9,7 @@ namespace PhotoFormatConverter
 
         private void klik(object sender, EventArgs e)
         {
-            MessageBox.Show("Radi!");
+            MessageBox.Show("Radi sve!");
         }
     }
 }
