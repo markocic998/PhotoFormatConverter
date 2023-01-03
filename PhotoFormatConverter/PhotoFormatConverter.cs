@@ -6,10 +6,5 @@ namespace PhotoFormatConverter
         {
             InitializeComponent();
         }
-
-        private void klik(object sender, EventArgs e)
-        {
-            MessageBox.Show("Radi sve!");
-        }
     }
 }
