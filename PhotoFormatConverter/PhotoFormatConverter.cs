@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Windows.Forms;
 
 namespace PhotoFormatConverter
@@ -14,7 +15,7 @@ namespace PhotoFormatConverter
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Title = "My Image Browser";
-                ofd.Filter = "Image Files|*.bmp;*.jpg;*.png;*.gif;";
+                ofd.Filter = "Image Files|" + Constants.ImageFiles;
                 ofd.Multiselect = true;
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
@@ -31,7 +32,7 @@ namespace PhotoFormatConverter
                 DialogResult result = fbd.ShowDialog();
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    string[] files = Directory.GetFiles(fbd.SelectedPath);
+                    string[] files = FindImageFilesInFolder(fbd.SelectedPath);
                     SelectedFilesOrFolderText.Text = DetermineSelectedFilesText(files);
                 }
             }
@@ -44,7 +45,18 @@ namespace PhotoFormatConverter
             {
                 text += file + "\r\n";
             }
-            return text.Substring(0, text.Length - 1);
+            return text.Length > 0 ? text.Substring(0, text.Length - 1) : text;
+        }
+
+        private string[] FindImageFilesInFolder(string folderPath)
+        {
+            return Directory.GetFiles(folderPath).Where(file => {
+                string fileLowerCase = file.ToLower();
+                return fileLowerCase.EndsWith(Constants.BmpFile) ||
+                       fileLowerCase.EndsWith(Constants.JpgFile) ||
+                       fileLowerCase.EndsWith(Constants.PngFile) ||
+                       fileLowerCase.EndsWith(Constants.GifFile);
+            }).ToArray();
         }
     }
 }
