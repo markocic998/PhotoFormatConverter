@@ -5,9 +5,42 @@ namespace PhotoFormatConverter
 {
     public partial class PhotoFormatConverter : Form
     {
+        private List<Resolution> resolutionList = new List<Resolution>();
+        private Resolution? selectedResolution;
+
         public PhotoFormatConverter()
         {
             InitializeComponent();
+            InitializeResolutions();
+            InitializeControls();
+        }
+
+        private void InitializeResolutions()
+        {
+            this.resolutionList.Add(new Resolution(720, 480));
+            this.resolutionList.Add(new Resolution(720, 576));
+            this.resolutionList.Add(new Resolution(800, 600));
+            this.resolutionList.Add(new Resolution(1024, 768));
+            this.resolutionList.Add(new Resolution(1280, 720));
+            this.resolutionList.Add(new Resolution(1280, 768));
+            this.resolutionList.Add(new Resolution(1280, 800));
+            this.resolutionList.Add(new Resolution(1280, 960));
+            this.resolutionList.Add(new Resolution(1280, 1024));
+            this.resolutionList.Add(new Resolution(1366, 768));
+            this.resolutionList.Add(new Resolution(1600, 900));
+            this.resolutionList.Add(new Resolution(1920, 1080));
+            this.resolutionList.Add(new Resolution(1920, 1200));
+            this.resolutionList.Add(new Resolution(2560, 1440));
+            this.resolutionList.Add(new Resolution(3440, 1440));
+            this.resolutionList.Add(new Resolution(3840, 2160));
+
+            this.selectedResolution = this.resolutionList[0];
+            ChooseResolutionComboBox.SelectedIndex = 0;
+        }
+
+        private void InitializeControls()
+        {
+            
         }
 
         private void OpenFileButton_Click(object sender, EventArgs e)
@@ -57,6 +90,11 @@ namespace PhotoFormatConverter
                        fileLowerCase.EndsWith(Constants.PngFile) ||
                        fileLowerCase.EndsWith(Constants.GifFile);
             }).ToArray();
+        }
+
+        private void ChooseResolutionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.selectedResolution = this.resolutionList[ChooseResolutionComboBox.SelectedIndex];
         }
     }
 }

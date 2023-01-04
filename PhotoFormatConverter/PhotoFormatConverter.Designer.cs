@@ -31,6 +31,7 @@
             this.SelectedFilesOrFolderText = new System.Windows.Forms.TextBox();
             this.OpenFileButton = new System.Windows.Forms.Button();
             this.FolderBrowserButton = new System.Windows.Forms.Button();
+            this.ChooseResolutionComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // SelectedFilesOrFolderText
@@ -67,11 +68,40 @@
             this.FolderBrowserButton.UseVisualStyleBackColor = true;
             this.FolderBrowserButton.Click += new System.EventHandler(this.FolderBrowserButton_Click);
             // 
+            // ChooseResolutionComboBox
+            // 
+            this.ChooseResolutionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ChooseResolutionComboBox.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ChooseResolutionComboBox.FormattingEnabled = true;
+            this.ChooseResolutionComboBox.Items.AddRange(new object[] {
+            "720 x 480   DVD NTSC",
+            "720 X 576   DVD PAL",
+            "800 x 600",
+            "1024 x 768",
+            "1280 x 720   HD READY",
+            "1280 x 768",
+            "1280 x 800",
+            "1280 x 960",
+            "1280 x 1024  Super-eXtended Graphics Array (SXGA)",
+            "1366 x 768   High Definition (HD)",
+            "1600 x 900   High Definition Plus (HD+)",
+            "1920 x 1080  Full High Definition (FHD)",
+            "1920 x 1200  Wide Ultra Extended Graphics Array (WUXGA)",
+            "2560 x 1440  Quad High Definition (QHD)",
+            "3440 x 1440  Wide Quad High Definition (WQHD)",
+            "3840 x 2160  4K or Ultra High Definition (UHD)"});
+            this.ChooseResolutionComboBox.Location = new System.Drawing.Point(100, 327);
+            this.ChooseResolutionComboBox.Name = "ChooseResolutionComboBox";
+            this.ChooseResolutionComboBox.Size = new System.Drawing.Size(1000, 39);
+            this.ChooseResolutionComboBox.TabIndex = 3;
+            this.ChooseResolutionComboBox.SelectedIndexChanged += new System.EventHandler(this.ChooseResolutionComboBox_SelectedIndexChanged);
+            // 
             // PhotoFormatConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1182, 453);
+            this.Controls.Add(this.ChooseResolutionComboBox);
             this.Controls.Add(this.FolderBrowserButton);
             this.Controls.Add(this.OpenFileButton);
             this.Controls.Add(this.SelectedFilesOrFolderText);
@@ -89,5 +119,6 @@
         private TextBox SelectedFilesOrFolderText;
         private Button OpenFileButton;
         private Button FolderBrowserButton;
+        private ComboBox ChooseResolutionComboBox;
     }
 }
