@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PhotoFormatConverter
 {
@@ -7,6 +8,7 @@ namespace PhotoFormatConverter
     {
         private List<Resolution> resolutionList = new List<Resolution>();
         private Resolution? selectedResolution;
+        private List<string> fileNameList = new List<string>();
 
         public PhotoFormatConverter()
         {
@@ -52,7 +54,8 @@ namespace PhotoFormatConverter
                 ofd.Multiselect = true;
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    SelectedFilesOrFolderText.Text = DetermineSelectedFilesText(ofd.FileNames);
+                    this.fileNameList = new List<string>(ofd.FileNames);
+                    SelectedFilesOrFolderText.Text = DetermineSelectedFilesText(this.fileNameList);
                 }
             }
 
@@ -65,13 +68,14 @@ namespace PhotoFormatConverter
                 DialogResult result = fbd.ShowDialog();
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    string[] files = FindImageFilesInFolder(fbd.SelectedPath);
-                    SelectedFilesOrFolderText.Text = DetermineSelectedFilesText(files);
+                    this.fileNameList = FindImageFilesInFolder(fbd.SelectedPath);
+                    string text = DetermineSelectedFilesText(this.fileNameList);
+                    SelectedFilesOrFolderText.Text = text == "" ? Constants.NoFiles : text;
                 }
             }
         }
 
-        private string DetermineSelectedFilesText(string[] files)
+        private string DetermineSelectedFilesText(List<string> files)
         {
             string text = "";
             foreach (string file in files)
@@ -81,7 +85,7 @@ namespace PhotoFormatConverter
             return text.Length > 0 ? text.Substring(0, text.Length - 1) : text;
         }
 
-        private string[] FindImageFilesInFolder(string folderPath)
+        private List<string> FindImageFilesInFolder(string folderPath)
         {
             return Directory.GetFiles(folderPath).Where(file => {
                 string fileLowerCase = file.ToLower();
@@ -89,12 +93,17 @@ namespace PhotoFormatConverter
                        fileLowerCase.EndsWith(Constants.JpgFile) ||
                        fileLowerCase.EndsWith(Constants.PngFile) ||
                        fileLowerCase.EndsWith(Constants.GifFile);
-            }).ToArray();
+            }).ToList();
         }
 
         private void ChooseResolutionComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.selectedResolution = this.resolutionList[ChooseResolutionComboBox.SelectedIndex];
+        }
+
+        private void convertButton_Click(object sender, EventArgs e)
+        {
+            Converter.Convert(this.fileNameList);
         }
     }
 }
