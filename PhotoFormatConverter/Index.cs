@@ -34,5 +34,6 @@ namespace PhotoFormatConverter
         public const string GifFile = ".gif";
         public const string ImageFiles = "*.bmp;*.jpg;*.png;*.gif;";
         public const string NoFiles = "There are no selected files yet.";
+        public const int ProgressBarMaxValue = 100;
     }
 }

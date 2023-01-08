@@ -36,6 +36,7 @@
             this.jpgRadioButton = new System.Windows.Forms.RadioButton();
             this.outputImageFormatGroupBox = new System.Windows.Forms.GroupBox();
             this.convertButton = new System.Windows.Forms.Button();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.outputImageFormatGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             // OpenFileButton
             // 
             this.OpenFileButton.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.OpenFileButton.Location = new System.Drawing.Point(100, 271);
+            this.OpenFileButton.Location = new System.Drawing.Point(1106, 159);
             this.OpenFileButton.Name = "OpenFileButton";
             this.OpenFileButton.Size = new System.Drawing.Size(187, 50);
             this.OpenFileButton.TabIndex = 1;
@@ -65,7 +66,7 @@
             // FolderBrowserButton
             // 
             this.FolderBrowserButton.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FolderBrowserButton.Location = new System.Drawing.Point(913, 271);
+            this.FolderBrowserButton.Location = new System.Drawing.Point(1106, 215);
             this.FolderBrowserButton.Name = "FolderBrowserButton";
             this.FolderBrowserButton.Size = new System.Drawing.Size(187, 50);
             this.FolderBrowserButton.TabIndex = 2;
@@ -95,11 +96,10 @@
             "2560 x 1440  Quad High Definition (QHD)",
             "3440 x 1440  Wide Quad High Definition (WQHD)",
             "3840 x 2160  4K or Ultra High Definition (UHD)"});
-            this.ChooseResolutionComboBox.Location = new System.Drawing.Point(100, 327);
+            this.ChooseResolutionComboBox.Location = new System.Drawing.Point(100, 281);
             this.ChooseResolutionComboBox.Name = "ChooseResolutionComboBox";
             this.ChooseResolutionComboBox.Size = new System.Drawing.Size(1000, 39);
             this.ChooseResolutionComboBox.TabIndex = 3;
-            this.ChooseResolutionComboBox.SelectedIndexChanged += new System.EventHandler(this.ChooseResolutionComboBox_SelectedIndexChanged);
             // 
             // bmpRadioButton
             // 
@@ -128,7 +128,7 @@
             this.outputImageFormatGroupBox.Controls.Add(this.bmpRadioButton);
             this.outputImageFormatGroupBox.Controls.Add(this.jpgRadioButton);
             this.outputImageFormatGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.outputImageFormatGroupBox.Location = new System.Drawing.Point(562, 394);
+            this.outputImageFormatGroupBox.Location = new System.Drawing.Point(593, 349);
             this.outputImageFormatGroupBox.Name = "outputImageFormatGroupBox";
             this.outputImageFormatGroupBox.Size = new System.Drawing.Size(303, 125);
             this.outputImageFormatGroupBox.TabIndex = 7;
@@ -137,19 +137,27 @@
             // 
             // convertButton
             // 
-            this.convertButton.Location = new System.Drawing.Point(913, 394);
+            this.convertButton.Location = new System.Drawing.Point(986, 349);
             this.convertButton.Name = "convertButton";
-            this.convertButton.Size = new System.Drawing.Size(187, 125);
+            this.convertButton.Size = new System.Drawing.Size(307, 125);
             this.convertButton.TabIndex = 8;
             this.convertButton.Text = "Convert";
             this.convertButton.UseVisualStyleBackColor = true;
             this.convertButton.Click += new System.EventHandler(this.convertButton_Click);
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(986, 497);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(307, 33);
+            this.progressBar.TabIndex = 9;
+            // 
             // PhotoFormatConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 553);
+            this.ClientSize = new System.Drawing.Size(1332, 553);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.convertButton);
             this.Controls.Add(this.outputImageFormatGroupBox);
             this.Controls.Add(this.ChooseResolutionComboBox);
@@ -177,5 +185,7 @@
         private RadioButton jpgRadioButton;
         private GroupBox outputImageFormatGroupBox;
         private Button convertButton;
+        private ProgressBar progressBar;
+        private Label progressBarLabel;
     }
 }

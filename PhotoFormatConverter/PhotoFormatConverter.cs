@@ -1,3 +1,4 @@
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
@@ -7,7 +8,6 @@ namespace PhotoFormatConverter
     public partial class PhotoFormatConverter : Form
     {
         private List<Resolution> resolutionList = new List<Resolution>();
-        private Resolution? selectedResolution;
         private List<string> fileNameList = new List<string>();
 
         public PhotoFormatConverter()
@@ -36,7 +36,6 @@ namespace PhotoFormatConverter
             this.resolutionList.Add(new Resolution(3440, 1440));
             this.resolutionList.Add(new Resolution(3840, 2160));
 
-            this.selectedResolution = this.resolutionList[0];
             ChooseResolutionComboBox.SelectedIndex = 0;
         }
 
@@ -96,14 +95,19 @@ namespace PhotoFormatConverter
             }).ToList();
         }
 
-        private void ChooseResolutionComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.selectedResolution = this.resolutionList[ChooseResolutionComboBox.SelectedIndex];
-        }
-
         private void convertButton_Click(object sender, EventArgs e)
         {
-            Converter.Convert(this.fileNameList);
+            if (this.fileNameList.Count > 0)
+            {
+                Resolution newResolution = this.resolutionList[ChooseResolutionComboBox.SelectedIndex];
+                ImageFormat imageFormat = bmpRadioButton.Checked ? ImageFormat.Bmp : ImageFormat.Jpeg;
+                Converter.ConvertImage(this.fileNameList, newResolution, imageFormat, this.progressBar);
+                MessageBox.Show("Conversion of selected files is done.");
+                this.progressBar.Value = 0;
+            } else
+            {
+                MessageBox.Show("There are no selected files yet. Please select files.");
+            }
         }
     }
 }
