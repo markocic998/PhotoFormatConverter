@@ -1,3 +1,4 @@
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
@@ -35,13 +36,11 @@ namespace PhotoFormatConverter
             this.resolutionList.Add(new Resolution(2560, 1440));
             this.resolutionList.Add(new Resolution(3440, 1440));
             this.resolutionList.Add(new Resolution(3840, 2160));
-
-            ChooseResolutionComboBox.SelectedIndex = 0;
         }
 
         private void InitializeControls()
         {
-            
+            ChooseResolutionComboBox.SelectedIndex = 0;
         }
 
         private void OpenFileButton_Click(object sender, EventArgs e)
@@ -99,15 +98,47 @@ namespace PhotoFormatConverter
         {
             if (this.fileNameList.Count > 0)
             {
-                Resolution newResolution = this.resolutionList[ChooseResolutionComboBox.SelectedIndex];
-                ImageFormat imageFormat = bmpRadioButton.Checked ? ImageFormat.Bmp : ImageFormat.Jpeg;
-                Converter.ConvertImage(this.fileNameList, newResolution, imageFormat, this.progressBar);
+                ConversionInfo conversionInfo = DetermineConversionInfo();
+                Converter.ConvertImage(this.fileNameList, conversionInfo, this.progressBar);
                 MessageBox.Show("Conversion of selected files is done.");
                 this.progressBar.Value = 0;
             } else
             {
                 MessageBox.Show("There are no selected files yet. Please select files.");
             }
+        }
+
+        private ConversionInfo DetermineConversionInfo()
+        {
+            Resolution newResolution = this.resolutionList[ChooseResolutionComboBox.SelectedIndex];
+            ImageFormat imageFormat = bmpRadioButton.Checked ? ImageFormat.Bmp : ImageFormat.Jpeg;
+            InterpolationMode interpolationMode;
+            SmoothingMode smoothingMode;
+            PixelOffsetMode pixelOffsetMode;
+            CompositingQuality compositingQuality;
+            if (lowQualityRadioButton.Checked)
+            {
+                interpolationMode = InterpolationMode.NearestNeighbor;
+                smoothingMode = SmoothingMode.HighSpeed;
+                pixelOffsetMode = PixelOffsetMode.HighSpeed;
+                compositingQuality = CompositingQuality.HighSpeed;
+
+            }
+            else if (normalQualityRadioButton.Checked)
+            {
+                interpolationMode = InterpolationMode.Bilinear;
+                smoothingMode = SmoothingMode.Default;
+                pixelOffsetMode = PixelOffsetMode.Half;
+                compositingQuality = CompositingQuality.Default;
+            }
+            else
+            {
+                interpolationMode = InterpolationMode.HighQualityBicubic;
+                smoothingMode = SmoothingMode.HighQuality;
+                pixelOffsetMode = PixelOffsetMode.HighQuality;
+                compositingQuality = CompositingQuality.HighQuality;
+            }
+            return new ConversionInfo(newResolution, imageFormat, interpolationMode, smoothingMode, pixelOffsetMode, compositingQuality);
         }
     }
 }

@@ -37,7 +37,12 @@
             this.outputImageFormatGroupBox = new System.Windows.Forms.GroupBox();
             this.convertButton = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.qualityGroupBox = new System.Windows.Forms.GroupBox();
+            this.highQualityRadioButton = new System.Windows.Forms.RadioButton();
+            this.normalQualityRadioButton = new System.Windows.Forms.RadioButton();
+            this.lowQualityRadioButton = new System.Windows.Forms.RadioButton();
             this.outputImageFormatGroupBox.SuspendLayout();
+            this.qualityGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // SelectedFilesOrFolderText
@@ -130,33 +135,80 @@
             this.outputImageFormatGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.outputImageFormatGroupBox.Location = new System.Drawing.Point(593, 349);
             this.outputImageFormatGroupBox.Name = "outputImageFormatGroupBox";
-            this.outputImageFormatGroupBox.Size = new System.Drawing.Size(303, 125);
-            this.outputImageFormatGroupBox.TabIndex = 7;
+            this.outputImageFormatGroupBox.Size = new System.Drawing.Size(303, 151);
+            this.outputImageFormatGroupBox.TabIndex = 5;
             this.outputImageFormatGroupBox.TabStop = false;
             this.outputImageFormatGroupBox.Text = "Choose output image format";
             // 
             // convertButton
             // 
+            this.convertButton.Font = new System.Drawing.Font("Segoe UI", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.convertButton.Location = new System.Drawing.Point(986, 349);
             this.convertButton.Name = "convertButton";
-            this.convertButton.Size = new System.Drawing.Size(307, 125);
-            this.convertButton.TabIndex = 8;
+            this.convertButton.Size = new System.Drawing.Size(307, 151);
+            this.convertButton.TabIndex = 6;
             this.convertButton.Text = "Convert";
             this.convertButton.UseVisualStyleBackColor = true;
             this.convertButton.Click += new System.EventHandler(this.convertButton_Click);
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(986, 497);
+            this.progressBar.Location = new System.Drawing.Point(986, 508);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(307, 33);
-            this.progressBar.TabIndex = 9;
+            this.progressBar.TabIndex = 7;
+            // 
+            // qualityGroupBox
+            // 
+            this.qualityGroupBox.Controls.Add(this.highQualityRadioButton);
+            this.qualityGroupBox.Controls.Add(this.normalQualityRadioButton);
+            this.qualityGroupBox.Controls.Add(this.lowQualityRadioButton);
+            this.qualityGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.qualityGroupBox.Location = new System.Drawing.Point(100, 349);
+            this.qualityGroupBox.Name = "qualityGroupBox";
+            this.qualityGroupBox.Size = new System.Drawing.Size(303, 151);
+            this.qualityGroupBox.TabIndex = 4;
+            this.qualityGroupBox.TabStop = false;
+            this.qualityGroupBox.Text = "Choose quality conversion";
+            // 
+            // highQualityRadioButton
+            // 
+            this.highQualityRadioButton.AutoSize = true;
+            this.highQualityRadioButton.Location = new System.Drawing.Point(6, 109);
+            this.highQualityRadioButton.Name = "highQualityRadioButton";
+            this.highQualityRadioButton.Size = new System.Drawing.Size(143, 32);
+            this.highQualityRadioButton.TabIndex = 2;
+            this.highQualityRadioButton.Text = "High Quality";
+            this.highQualityRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // normalQualityRadioButton
+            // 
+            this.normalQualityRadioButton.AutoSize = true;
+            this.normalQualityRadioButton.Checked = true;
+            this.normalQualityRadioButton.Location = new System.Drawing.Point(6, 71);
+            this.normalQualityRadioButton.Name = "normalQualityRadioButton";
+            this.normalQualityRadioButton.Size = new System.Drawing.Size(167, 32);
+            this.normalQualityRadioButton.TabIndex = 1;
+            this.normalQualityRadioButton.TabStop = true;
+            this.normalQualityRadioButton.Text = "Normal Quality";
+            this.normalQualityRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // lowQualityRadioButton
+            // 
+            this.lowQualityRadioButton.AutoSize = true;
+            this.lowQualityRadioButton.Location = new System.Drawing.Point(6, 33);
+            this.lowQualityRadioButton.Name = "lowQualityRadioButton";
+            this.lowQualityRadioButton.Size = new System.Drawing.Size(136, 32);
+            this.lowQualityRadioButton.TabIndex = 0;
+            this.lowQualityRadioButton.Text = "Low Quality";
+            this.lowQualityRadioButton.UseVisualStyleBackColor = true;
             // 
             // PhotoFormatConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1332, 553);
+            this.Controls.Add(this.qualityGroupBox);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.convertButton);
             this.Controls.Add(this.outputImageFormatGroupBox);
@@ -170,6 +222,8 @@
             this.Text = "Photo Format Converter";
             this.outputImageFormatGroupBox.ResumeLayout(false);
             this.outputImageFormatGroupBox.PerformLayout();
+            this.qualityGroupBox.ResumeLayout(false);
+            this.qualityGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +241,9 @@
         private Button convertButton;
         private ProgressBar progressBar;
         private Label progressBarLabel;
+        private GroupBox qualityGroupBox;
+        private RadioButton highQualityRadioButton;
+        private RadioButton normalQualityRadioButton;
+        private RadioButton lowQualityRadioButton;
     }
 }
