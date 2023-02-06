@@ -96,7 +96,7 @@ namespace PhotoFormatConverter
                 graphic.DrawImage(image, x, y, outputWidth, outputHeight);
 
                 string fileName = Path.GetFileNameWithoutExtension(file);
-                bitmap.Save($"{path}{fileName}.{conversionInfo.ImageFormat()}", conversionInfo.ImageFormat());
+                bitmap.Save($"{path}{fileName}_{conversionInfo.InterpolationMode().ToString()}.{conversionInfo.ImageFormat().ToString().ToLower()}", conversionInfo.ImageFormat());
                 int newValue = progressBar.Value + progressStep;
                 progressBar.Value = newValue > Constants.ProgressBarMaxValue ? Constants.ProgressBarMaxValue : newValue;
             }
