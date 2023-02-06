@@ -112,6 +112,7 @@ namespace PhotoFormatConverter
         {
             Resolution newResolution = this.resolutionList[ChooseResolutionComboBox.SelectedIndex];
             ImageFormat imageFormat = bmpRadioButton.Checked ? ImageFormat.Bmp : ImageFormat.Jpeg;
+            bool shouldPreserveAspectRatio = preserveAspectRatioCheckBox.Checked;
             InterpolationMode interpolationMode;
             SmoothingMode smoothingMode;
             PixelOffsetMode pixelOffsetMode;
@@ -138,7 +139,7 @@ namespace PhotoFormatConverter
                 pixelOffsetMode = PixelOffsetMode.HighQuality;
                 compositingQuality = CompositingQuality.HighQuality;
             }
-            return new ConversionInfo(newResolution, imageFormat, interpolationMode, smoothingMode, pixelOffsetMode, compositingQuality);
+            return new ConversionInfo(newResolution, imageFormat, shouldPreserveAspectRatio, interpolationMode, smoothingMode, pixelOffsetMode, compositingQuality);
         }
     }
 }

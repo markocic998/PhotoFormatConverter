@@ -41,6 +41,7 @@
             this.highQualityRadioButton = new System.Windows.Forms.RadioButton();
             this.normalQualityRadioButton = new System.Windows.Forms.RadioButton();
             this.lowQualityRadioButton = new System.Windows.Forms.RadioButton();
+            this.preserveAspectRatioCheckBox = new System.Windows.Forms.CheckBox();
             this.outputImageFormatGroupBox.SuspendLayout();
             this.qualityGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -203,11 +204,25 @@
             this.lowQualityRadioButton.Text = "Low Quality";
             this.lowQualityRadioButton.UseVisualStyleBackColor = true;
             // 
+            // preserveAspectRatioCheckBox
+            // 
+            this.preserveAspectRatioCheckBox.AutoSize = true;
+            this.preserveAspectRatioCheckBox.Checked = true;
+            this.preserveAspectRatioCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.preserveAspectRatioCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.preserveAspectRatioCheckBox.Location = new System.Drawing.Point(100, 560);
+            this.preserveAspectRatioCheckBox.Name = "preserveAspectRatioCheckBox";
+            this.preserveAspectRatioCheckBox.Size = new System.Drawing.Size(222, 32);
+            this.preserveAspectRatioCheckBox.TabIndex = 8;
+            this.preserveAspectRatioCheckBox.Text = "Preserve Aspect Ratio";
+            this.preserveAspectRatioCheckBox.UseVisualStyleBackColor = true;
+            // 
             // PhotoFormatConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1332, 553);
+            this.ClientSize = new System.Drawing.Size(1332, 753);
+            this.Controls.Add(this.preserveAspectRatioCheckBox);
             this.Controls.Add(this.qualityGroupBox);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.convertButton);
@@ -245,5 +260,6 @@
         private RadioButton highQualityRadioButton;
         private RadioButton normalQualityRadioButton;
         private RadioButton lowQualityRadioButton;
+        private CheckBox preserveAspectRatioCheckBox;
     }
 }
