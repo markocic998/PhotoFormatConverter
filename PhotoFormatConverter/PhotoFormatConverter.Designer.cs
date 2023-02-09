@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SelectedFilesOrFolderText = new System.Windows.Forms.TextBox();
             this.OpenFileButton = new System.Windows.Forms.Button();
             this.FolderBrowserButton = new System.Windows.Forms.Button();
             this.ChooseResolutionComboBox = new System.Windows.Forms.ComboBox();
@@ -42,21 +41,12 @@
             this.normalQualityRadioButton = new System.Windows.Forms.RadioButton();
             this.lowQualityRadioButton = new System.Windows.Forms.RadioButton();
             this.preserveAspectRatioCheckBox = new System.Windows.Forms.CheckBox();
+            this.LoadedFilesListBox = new System.Windows.Forms.ListBox();
+            this.ImagePreviewPictureBox = new System.Windows.Forms.PictureBox();
             this.outputImageFormatGroupBox.SuspendLayout();
             this.qualityGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagePreviewPictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // SelectedFilesOrFolderText
-            // 
-            this.SelectedFilesOrFolderText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SelectedFilesOrFolderText.Location = new System.Drawing.Point(100, 65);
-            this.SelectedFilesOrFolderText.Multiline = true;
-            this.SelectedFilesOrFolderText.Name = "SelectedFilesOrFolderText";
-            this.SelectedFilesOrFolderText.ReadOnly = true;
-            this.SelectedFilesOrFolderText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.SelectedFilesOrFolderText.Size = new System.Drawing.Size(1000, 200);
-            this.SelectedFilesOrFolderText.TabIndex = 0;
-            this.SelectedFilesOrFolderText.Text = "There are no selected files yet.";
             // 
             // OpenFileButton
             // 
@@ -65,7 +55,7 @@
             this.OpenFileButton.Name = "OpenFileButton";
             this.OpenFileButton.Size = new System.Drawing.Size(187, 50);
             this.OpenFileButton.TabIndex = 1;
-            this.OpenFileButton.Text = "Select Files";
+            this.OpenFileButton.Text = "Load Files";
             this.OpenFileButton.UseVisualStyleBackColor = true;
             this.OpenFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
             // 
@@ -217,11 +207,35 @@
             this.preserveAspectRatioCheckBox.Text = "Preserve Aspect Ratio";
             this.preserveAspectRatioCheckBox.UseVisualStyleBackColor = true;
             // 
+            // LoadedFilesListBox
+            // 
+            this.LoadedFilesListBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LoadedFilesListBox.FormattingEnabled = true;
+            this.LoadedFilesListBox.HorizontalScrollbar = true;
+            this.LoadedFilesListBox.ItemHeight = 28;
+            this.LoadedFilesListBox.Location = new System.Drawing.Point(100, 28);
+            this.LoadedFilesListBox.Name = "LoadedFilesListBox";
+            this.LoadedFilesListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.LoadedFilesListBox.Size = new System.Drawing.Size(1000, 228);
+            this.LoadedFilesListBox.TabIndex = 9;
+            this.LoadedFilesListBox.SelectedIndexChanged += new System.EventHandler(this.LoadedFilesListBox_SelectedIndexChanged);
+            // 
+            // ImagePreviewPictureBox
+            // 
+            this.ImagePreviewPictureBox.Location = new System.Drawing.Point(1106, 28);
+            this.ImagePreviewPictureBox.Name = "ImagePreviewPictureBox";
+            this.ImagePreviewPictureBox.Size = new System.Drawing.Size(187, 125);
+            this.ImagePreviewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ImagePreviewPictureBox.TabIndex = 10;
+            this.ImagePreviewPictureBox.TabStop = false;
+            // 
             // PhotoFormatConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1332, 753);
+            this.Controls.Add(this.ImagePreviewPictureBox);
+            this.Controls.Add(this.LoadedFilesListBox);
             this.Controls.Add(this.preserveAspectRatioCheckBox);
             this.Controls.Add(this.qualityGroupBox);
             this.Controls.Add(this.progressBar);
@@ -230,7 +244,6 @@
             this.Controls.Add(this.ChooseResolutionComboBox);
             this.Controls.Add(this.FolderBrowserButton);
             this.Controls.Add(this.OpenFileButton);
-            this.Controls.Add(this.SelectedFilesOrFolderText);
             this.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "PhotoFormatConverter";
@@ -239,14 +252,13 @@
             this.outputImageFormatGroupBox.PerformLayout();
             this.qualityGroupBox.ResumeLayout(false);
             this.qualityGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagePreviewPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private TextBox SelectedFilesOrFolderText;
         private Button OpenFileButton;
         private Button FolderBrowserButton;
         private ComboBox ChooseResolutionComboBox;
@@ -261,5 +273,7 @@
         private RadioButton normalQualityRadioButton;
         private RadioButton lowQualityRadioButton;
         private CheckBox preserveAspectRatioCheckBox;
+        private ListBox LoadedFilesListBox;
+        private PictureBox ImagePreviewPictureBox;
     }
 }

@@ -1,15 +1,13 @@
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
+using Image = System.Drawing.Image;
 
 namespace PhotoFormatConverter
 {
     public partial class PhotoFormatConverter : Form
     {
         private List<Resolution> resolutionList = new List<Resolution>();
-        private List<string> fileNameList = new List<string>();
+        private List<string> selectedFilesList = new List<string>();
 
         public PhotoFormatConverter()
         {
@@ -52,8 +50,9 @@ namespace PhotoFormatConverter
                 ofd.Multiselect = true;
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    this.fileNameList = new List<string>(ofd.FileNames);
-                    SelectedFilesOrFolderText.Text = DetermineSelectedFilesText(this.fileNameList);
+                    InitListBox(ofd.FileNames);
+                    ClearSelectedFilesList();
+                    ClearPictureBox();
                 }
             }
 
@@ -65,25 +64,27 @@ namespace PhotoFormatConverter
             {
                 DialogResult result = fbd.ShowDialog();
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    this.fileNameList = FindImageFilesInFolder(fbd.SelectedPath);
-                    string text = DetermineSelectedFilesText(this.fileNameList);
-                    SelectedFilesOrFolderText.Text = text == "" ? Constants.NoFiles : text;
+                { 
+                    string[] fileNameList = FindImageFilesInFolder(fbd.SelectedPath);
+                    InitListBox(fileNameList);
+                    ClearSelectedFilesList();
+                    ClearPictureBox();
                 }
             }
         }
 
-        private string DetermineSelectedFilesText(List<string> files)
+        private void InitListBox(object[] items)
         {
-            string text = "";
-            foreach (string file in files)
-            {
-                text += file + "\r\n";
-            }
-            return text.Length > 0 ? text.Substring(0, text.Length - 1) : text;
+            LoadedFilesListBox.Items.Clear();
+            LoadedFilesListBox.Items.AddRange(items);
         }
 
-        private List<string> FindImageFilesInFolder(string folderPath)
+        private void ClearSelectedFilesList()
+        {
+            this.selectedFilesList = new List<string>();
+        }
+
+        private string[] FindImageFilesInFolder(string folderPath)
         {
             return Directory.GetFiles(folderPath).Where(file => {
                 string fileLowerCase = file.ToLower();
@@ -91,15 +92,15 @@ namespace PhotoFormatConverter
                        fileLowerCase.EndsWith(Constants.JpgFile) ||
                        fileLowerCase.EndsWith(Constants.PngFile) ||
                        fileLowerCase.EndsWith(Constants.GifFile);
-            }).ToList();
+            }).ToArray();
         }
 
         private void convertButton_Click(object sender, EventArgs e)
         {
-            if (this.fileNameList.Count > 0)
+            if (this.selectedFilesList.Count > 0)
             {
                 ConversionInfo conversionInfo = DetermineConversionInfo();
-                Converter.ConvertImage(this.fileNameList, conversionInfo, this.progressBar);
+                Converter.ConvertImage(this.selectedFilesList, conversionInfo, this.progressBar);
                 MessageBox.Show("Conversion of selected files is done.");
                 this.progressBar.Value = 0;
             } else
@@ -140,6 +141,24 @@ namespace PhotoFormatConverter
                 compositingQuality = CompositingQuality.HighQuality;
             }
             return new ConversionInfo(newResolution, imageFormat, shouldPreserveAspectRatio, interpolationMode, smoothingMode, pixelOffsetMode, compositingQuality);
+        }
+
+        private void LoadedFilesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.selectedFilesList = LoadedFilesListBox.SelectedItems.Cast<string>().ToList();
+            if (this.selectedFilesList.Count == 1)
+            {
+                ImagePreviewPictureBox.Image = Image.FromFile(this.selectedFilesList.First());
+            }
+            else
+            {
+                ClearPictureBox();
+            }
+        }
+
+        private void ClearPictureBox()
+        {
+            ImagePreviewPictureBox.Image = null;
         }
     }
 }
