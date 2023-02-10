@@ -51,8 +51,7 @@ namespace PhotoFormatConverter
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     InitListBox(ofd.FileNames);
-                    ClearSelectedFilesList();
-                    ClearPictureBox();
+                    ClearOnLoadingFiles();
                 }
             }
 
@@ -67,10 +66,16 @@ namespace PhotoFormatConverter
                 { 
                     string[] fileNameList = FindImageFilesInFolder(fbd.SelectedPath);
                     InitListBox(fileNameList);
-                    ClearSelectedFilesList();
-                    ClearPictureBox();
+                    ClearOnLoadingFiles();
                 }
             }
+        }
+
+        private void ClearOnLoadingFiles()
+        {
+            ClearSelectedFilesList();
+            ClearPictureBox();
+            ClearSelectAllCheckBox();
         }
 
         private void InitListBox(object[] items)
@@ -82,6 +87,11 @@ namespace PhotoFormatConverter
         private void ClearSelectedFilesList()
         {
             this.selectedFilesList = new List<string>();
+        }
+
+        private void ClearSelectAllCheckBox()
+        {
+            SelectAllCheckBox.Checked = false;
         }
 
         private string[] FindImageFilesInFolder(string folderPath)
@@ -146,6 +156,30 @@ namespace PhotoFormatConverter
         private void LoadedFilesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.selectedFilesList = LoadedFilesListBox.SelectedItems.Cast<string>().ToList();
+            ResolveSelectAllCheckBox();
+            ResolveImagePreviewPictureBox();
+        }
+
+        private void ResolveSelectAllCheckBox()
+        {
+            if (IsNumberOfLoadedAndSelectedFilesTheSame())
+            {
+                if (!SelectAllCheckBox.Checked)
+                {
+                    SelectAllCheckBox.Checked = true;
+                }
+            }
+            else
+            {
+                if (SelectAllCheckBox.Checked)
+                {
+                    SelectAllCheckBox.Checked = false;
+                }
+            }
+        }
+
+        private void ResolveImagePreviewPictureBox()
+        {
             if (this.selectedFilesList.Count == 1)
             {
                 ImagePreviewPictureBox.Image = Image.FromFile(this.selectedFilesList.First());
@@ -159,6 +193,32 @@ namespace PhotoFormatConverter
         private void ClearPictureBox()
         {
             ImagePreviewPictureBox.Image = null;
+        }
+
+        private void SelectAllCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (SelectAllCheckBox.Checked)
+            {
+                if (!IsNumberOfLoadedAndSelectedFilesTheSame())
+                {
+                    for (int i = 0; i < LoadedFilesListBox.Items.Count; i++)
+                    {
+                        LoadedFilesListBox.SetSelected(i, true);
+                    }
+                }
+            }
+            else
+            {
+                if (IsNumberOfLoadedAndSelectedFilesTheSame())
+                {
+                    LoadedFilesListBox.ClearSelected();
+                }
+            }
+        }
+
+        private bool IsNumberOfLoadedAndSelectedFilesTheSame()
+        {
+            return LoadedFilesListBox.Items.Count == LoadedFilesListBox.SelectedItems.Count;
         }
     }
 }

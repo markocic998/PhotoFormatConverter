@@ -43,6 +43,7 @@
             this.preserveAspectRatioCheckBox = new System.Windows.Forms.CheckBox();
             this.LoadedFilesListBox = new System.Windows.Forms.ListBox();
             this.ImagePreviewPictureBox = new System.Windows.Forms.PictureBox();
+            this.SelectAllCheckBox = new System.Windows.Forms.CheckBox();
             this.outputImageFormatGroupBox.SuspendLayout();
             this.qualityGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagePreviewPictureBox)).BeginInit();
@@ -229,11 +230,24 @@
             this.ImagePreviewPictureBox.TabIndex = 10;
             this.ImagePreviewPictureBox.TabStop = false;
             // 
+            // SelectAllCheckBox
+            // 
+            this.SelectAllCheckBox.AutoSize = true;
+            this.SelectAllCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SelectAllCheckBox.Location = new System.Drawing.Point(1179, 285);
+            this.SelectAllCheckBox.Name = "SelectAllCheckBox";
+            this.SelectAllCheckBox.Size = new System.Drawing.Size(114, 32);
+            this.SelectAllCheckBox.TabIndex = 11;
+            this.SelectAllCheckBox.Text = "Select All";
+            this.SelectAllCheckBox.UseVisualStyleBackColor = true;
+            this.SelectAllCheckBox.CheckedChanged += new System.EventHandler(this.SelectAllCheckBox_CheckedChanged);
+            // 
             // PhotoFormatConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1332, 753);
+            this.Controls.Add(this.SelectAllCheckBox);
             this.Controls.Add(this.ImagePreviewPictureBox);
             this.Controls.Add(this.LoadedFilesListBox);
             this.Controls.Add(this.preserveAspectRatioCheckBox);
@@ -275,5 +289,6 @@
         private CheckBox preserveAspectRatioCheckBox;
         private ListBox LoadedFilesListBox;
         private PictureBox ImagePreviewPictureBox;
+        private CheckBox SelectAllCheckBox;
     }
 }
