@@ -110,8 +110,13 @@ namespace PhotoFormatConverter
             if (this.selectedFilesList.Count > 0)
             {
                 ConversionInfo conversionInfo = DetermineConversionInfo();
-                Converter.ConvertImage(this.selectedFilesList, conversionInfo, this.progressBar);
+                List<string> newFilePaths = Converter.ConvertImage(this.selectedFilesList, conversionInfo, this.progressBar);
                 MessageBox.Show("Conversion of selected files is done.");
+                if (this.selectedFilesList.Count == 1)
+                {
+                    ResultForm resultForm = new ResultForm(this.selectedFilesList.First(), newFilePaths.First());
+                    resultForm.Show();
+                }
                 this.progressBar.Value = 0;
             } else
             {

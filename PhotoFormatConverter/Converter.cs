@@ -61,9 +61,10 @@ namespace PhotoFormatConverter
 
     static class Converter
     {
-        public static void ConvertImage(List<string> fileNames, ConversionInfo conversionInfo, ProgressBar progressBar)
+        public static List<string> ConvertImage(List<string> fileNames, ConversionInfo conversionInfo, ProgressBar progressBar)
         {
-            if (fileNames.Count == 0) { return; }
+            List<string> newFilePaths = new List<string>();
+            if (fileNames.Count == 0) { return newFilePaths; }
             Random rnd = new Random();
             string nonce = rnd.Next(1000).ToString();
             progressBar.Value = 0;
@@ -107,11 +108,14 @@ namespace PhotoFormatConverter
                 }
 
                 string fileName = Path.GetFileNameWithoutExtension(file);
-                bitmap.Save($"{path}{fileName}_{nonce}_{conversionInfo.InterpolationMode().ToString()}.{conversionInfo.ImageFormat().ToString().ToLower()}", conversionInfo.ImageFormat());
+                string newPath = $"{path}{fileName}_{nonce}_{conversionInfo.InterpolationMode().ToString()}.{conversionInfo.ImageFormat().ToString().ToLower()}";
+                bitmap.Save(newPath, conversionInfo.ImageFormat());
+                newFilePaths.Add(newPath);
                 int newValue = progressBar.Value + progressStep;
                 progressBar.Value = newValue > Constants.ProgressBarMaxValue ? Constants.ProgressBarMaxValue : newValue;
             }
             progressBar.Value = Constants.ProgressBarMaxValue;
+            return newFilePaths;
         }
     }
 }
