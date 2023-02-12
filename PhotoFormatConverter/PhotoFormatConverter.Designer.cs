@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhotoFormatConverter));
             this.OpenFileButton = new System.Windows.Forms.Button();
             this.FolderBrowserButton = new System.Windows.Forms.Button();
             this.ChooseResolutionComboBox = new System.Windows.Forms.ComboBox();
@@ -52,10 +53,10 @@
             // OpenFileButton
             // 
             this.OpenFileButton.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.OpenFileButton.Location = new System.Drawing.Point(1106, 159);
+            this.OpenFileButton.Location = new System.Drawing.Point(689, 290);
             this.OpenFileButton.Name = "OpenFileButton";
             this.OpenFileButton.Size = new System.Drawing.Size(187, 50);
-            this.OpenFileButton.TabIndex = 1;
+            this.OpenFileButton.TabIndex = 3;
             this.OpenFileButton.Text = "Load Files";
             this.OpenFileButton.UseVisualStyleBackColor = true;
             this.OpenFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
@@ -63,10 +64,10 @@
             // FolderBrowserButton
             // 
             this.FolderBrowserButton.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FolderBrowserButton.Location = new System.Drawing.Point(1106, 215);
+            this.FolderBrowserButton.Location = new System.Drawing.Point(882, 290);
             this.FolderBrowserButton.Name = "FolderBrowserButton";
             this.FolderBrowserButton.Size = new System.Drawing.Size(187, 50);
-            this.FolderBrowserButton.TabIndex = 2;
+            this.FolderBrowserButton.TabIndex = 4;
             this.FolderBrowserButton.Text = "Open Folder";
             this.FolderBrowserButton.UseVisualStyleBackColor = true;
             this.FolderBrowserButton.Click += new System.EventHandler(this.FolderBrowserButton_Click);
@@ -93,10 +94,10 @@
             "2560 x 1440  Quad High Definition (QHD)",
             "3440 x 1440  Wide Quad High Definition (WQHD)",
             "3840 x 2160  4K or Ultra High Definition (UHD)"});
-            this.ChooseResolutionComboBox.Location = new System.Drawing.Point(100, 281);
+            this.ChooseResolutionComboBox.Location = new System.Drawing.Point(50, 391);
             this.ChooseResolutionComboBox.Name = "ChooseResolutionComboBox";
-            this.ChooseResolutionComboBox.Size = new System.Drawing.Size(1000, 39);
-            this.ChooseResolutionComboBox.TabIndex = 3;
+            this.ChooseResolutionComboBox.Size = new System.Drawing.Size(1019, 39);
+            this.ChooseResolutionComboBox.TabIndex = 5;
             // 
             // bmpRadioButton
             // 
@@ -125,30 +126,30 @@
             this.outputImageFormatGroupBox.Controls.Add(this.bmpRadioButton);
             this.outputImageFormatGroupBox.Controls.Add(this.jpgRadioButton);
             this.outputImageFormatGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.outputImageFormatGroupBox.Location = new System.Drawing.Point(593, 349);
+            this.outputImageFormatGroupBox.Location = new System.Drawing.Point(723, 464);
             this.outputImageFormatGroupBox.Name = "outputImageFormatGroupBox";
             this.outputImageFormatGroupBox.Size = new System.Drawing.Size(303, 151);
-            this.outputImageFormatGroupBox.TabIndex = 5;
+            this.outputImageFormatGroupBox.TabIndex = 8;
             this.outputImageFormatGroupBox.TabStop = false;
             this.outputImageFormatGroupBox.Text = "Choose output image format";
             // 
             // convertButton
             // 
             this.convertButton.Font = new System.Drawing.Font("Segoe UI", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.convertButton.Location = new System.Drawing.Point(986, 349);
+            this.convertButton.Location = new System.Drawing.Point(1075, 464);
             this.convertButton.Name = "convertButton";
-            this.convertButton.Size = new System.Drawing.Size(307, 151);
-            this.convertButton.TabIndex = 6;
+            this.convertButton.Size = new System.Drawing.Size(256, 151);
+            this.convertButton.TabIndex = 9;
             this.convertButton.Text = "Convert";
             this.convertButton.UseVisualStyleBackColor = true;
             this.convertButton.Click += new System.EventHandler(this.convertButton_Click);
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(986, 508);
+            this.progressBar.Location = new System.Drawing.Point(1075, 621);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(307, 33);
-            this.progressBar.TabIndex = 7;
+            this.progressBar.Size = new System.Drawing.Size(256, 33);
+            this.progressBar.TabIndex = 10;
             // 
             // qualityGroupBox
             // 
@@ -156,10 +157,10 @@
             this.qualityGroupBox.Controls.Add(this.normalQualityRadioButton);
             this.qualityGroupBox.Controls.Add(this.lowQualityRadioButton);
             this.qualityGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.qualityGroupBox.Location = new System.Drawing.Point(100, 349);
+            this.qualityGroupBox.Location = new System.Drawing.Point(355, 464);
             this.qualityGroupBox.Name = "qualityGroupBox";
             this.qualityGroupBox.Size = new System.Drawing.Size(303, 151);
-            this.qualityGroupBox.TabIndex = 4;
+            this.qualityGroupBox.TabIndex = 7;
             this.qualityGroupBox.TabStop = false;
             this.qualityGroupBox.Text = "Choose quality conversion";
             // 
@@ -201,10 +202,10 @@
             this.preserveAspectRatioCheckBox.Checked = true;
             this.preserveAspectRatioCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.preserveAspectRatioCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.preserveAspectRatioCheckBox.Location = new System.Drawing.Point(100, 560);
+            this.preserveAspectRatioCheckBox.Location = new System.Drawing.Point(79, 464);
             this.preserveAspectRatioCheckBox.Name = "preserveAspectRatioCheckBox";
             this.preserveAspectRatioCheckBox.Size = new System.Drawing.Size(222, 32);
-            this.preserveAspectRatioCheckBox.TabIndex = 8;
+            this.preserveAspectRatioCheckBox.TabIndex = 6;
             this.preserveAspectRatioCheckBox.Text = "Preserve Aspect Ratio";
             this.preserveAspectRatioCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -214,18 +215,18 @@
             this.LoadedFilesListBox.FormattingEnabled = true;
             this.LoadedFilesListBox.HorizontalScrollbar = true;
             this.LoadedFilesListBox.ItemHeight = 28;
-            this.LoadedFilesListBox.Location = new System.Drawing.Point(100, 28);
+            this.LoadedFilesListBox.Location = new System.Drawing.Point(50, 28);
             this.LoadedFilesListBox.Name = "LoadedFilesListBox";
             this.LoadedFilesListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.LoadedFilesListBox.Size = new System.Drawing.Size(1000, 228);
-            this.LoadedFilesListBox.TabIndex = 9;
+            this.LoadedFilesListBox.Size = new System.Drawing.Size(1019, 256);
+            this.LoadedFilesListBox.TabIndex = 1;
             this.LoadedFilesListBox.SelectedIndexChanged += new System.EventHandler(this.LoadedFilesListBox_SelectedIndexChanged);
             // 
             // ImagePreviewPictureBox
             // 
-            this.ImagePreviewPictureBox.Location = new System.Drawing.Point(1106, 28);
+            this.ImagePreviewPictureBox.Location = new System.Drawing.Point(1075, 28);
             this.ImagePreviewPictureBox.Name = "ImagePreviewPictureBox";
-            this.ImagePreviewPictureBox.Size = new System.Drawing.Size(187, 125);
+            this.ImagePreviewPictureBox.Size = new System.Drawing.Size(256, 256);
             this.ImagePreviewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ImagePreviewPictureBox.TabIndex = 10;
             this.ImagePreviewPictureBox.TabStop = false;
@@ -234,10 +235,10 @@
             // 
             this.SelectAllCheckBox.AutoSize = true;
             this.SelectAllCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SelectAllCheckBox.Location = new System.Drawing.Point(1179, 285);
+            this.SelectAllCheckBox.Location = new System.Drawing.Point(50, 290);
             this.SelectAllCheckBox.Name = "SelectAllCheckBox";
             this.SelectAllCheckBox.Size = new System.Drawing.Size(114, 32);
-            this.SelectAllCheckBox.TabIndex = 11;
+            this.SelectAllCheckBox.TabIndex = 2;
             this.SelectAllCheckBox.Text = "Select All";
             this.SelectAllCheckBox.UseVisualStyleBackColor = true;
             this.SelectAllCheckBox.CheckedChanged += new System.EventHandler(this.SelectAllCheckBox_CheckedChanged);
@@ -246,7 +247,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1332, 753);
+            this.ClientSize = new System.Drawing.Size(1382, 678);
             this.Controls.Add(this.SelectAllCheckBox);
             this.Controls.Add(this.ImagePreviewPictureBox);
             this.Controls.Add(this.LoadedFilesListBox);
@@ -259,7 +260,10 @@
             this.Controls.Add(this.FolderBrowserButton);
             this.Controls.Add(this.OpenFileButton);
             this.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MaximizeBox = false;
             this.Name = "PhotoFormatConverter";
             this.Text = "Photo Format Converter";
             this.outputImageFormatGroupBox.ResumeLayout(false);
