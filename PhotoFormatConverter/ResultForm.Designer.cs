@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResultForm));
             this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.NewPhotoLabel = new System.Windows.Forms.Label();
             this.OriginalPhotoPictureBox = new System.Windows.Forms.PictureBox();
@@ -104,8 +105,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1382, 685);
             this.Controls.Add(this.TableLayoutPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ResultForm";
             this.Text = "Conversion Result";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.TableLayoutPanel.ResumeLayout(false);
             this.TableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OriginalPhotoPictureBox)).EndInit();
